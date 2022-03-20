@@ -6,6 +6,7 @@ function TaskItem(props) {
     <li className="task-item">
       <span
         className={`icon icon-check ${props.completed && "icon-check--active"}`}
+        onClick={props.onComplete}
       >
         √
       </span>
@@ -14,7 +15,12 @@ function TaskItem(props) {
       >
         {props.text}
       </p>
-      <span className="icon icon-delete">X</span>
+      <span
+        className="icon icon-delete"
+        onClick={props.onDelete}
+      >
+        X
+      </span>
     </li>
   );
 }
