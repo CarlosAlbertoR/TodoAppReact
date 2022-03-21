@@ -9,7 +9,7 @@ function TaskSearch({ searchValue, setSearchValue }) {
   return (
     <input
       className="task-search"
-      placeholder="Title"
+      placeholder="Task name"
       value={searchValue}
       onChange={onSearchValueChange}
     />
