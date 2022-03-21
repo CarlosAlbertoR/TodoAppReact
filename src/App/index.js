@@ -1,10 +1,5 @@
 import React from "react";
-import { TaskCounter } from "./TaskCounter";
-import { TaskSearch } from "./TaskSearch";
-import { TaskList } from "./TaskList";
-import { TaskItem } from "./TaskItem";
-import { CreateTaskButton } from "./CreateTaskButton";
-//import './App.css';
+import { AppUI } from "./AppUI";
 
 const defaultTasks = [
   { text: "Cortar cebolla", completed: true },
@@ -45,22 +40,15 @@ function App() {
   };
 
   return (
-    <React.Fragment>
-      <TaskCounter total={totalTasks} completed={completedTasks} />
-      <TaskSearch searchValue={searchValue} setSearchValue={setSearchValue} />
-      <TaskList>
-        {searchedTasks.map((task) => (
-          <TaskItem
-            key={task.text}
-            text={task.text}
-            completed={task.completed}
-            onComplete={() => completeTask(task.text)}
-            onDelete={() => deleteTask(task.text)}
-          />
-        ))}
-      </TaskList>
-      <CreateTaskButton />
-    </React.Fragment>
+    <AppUI
+      totalTasks={totalTasks}
+      completedTasks={completedTasks}
+      searchValue={searchValue}
+      setSearchValue={setSearchValue}
+      searchedTasks={searchedTasks}
+      completeTask={completeTask}
+      deleteTask={deleteTask}
+    />
   );
 }
 
