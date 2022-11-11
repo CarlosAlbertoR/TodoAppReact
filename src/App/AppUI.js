@@ -5,10 +5,19 @@ import { TaskList } from "../TaskList";
 import { TaskItem } from "../TaskItem";
 import { CreateTaskButton } from "../CreateTaskButton";
 import { TaskContext } from "../TaskContext";
+import { Modal } from "../Modal";
+import { TaskForm } from "../TaskForm";
 
 function AppUI() {
-  const { error, loading, searchedTasks, completeTask, deleteTask } =
-    React.useContext(TaskContext);
+  const {
+    error,
+    loading,
+    searchedTasks,
+    completeTask,
+    deleteTask,
+    openModal,
+    setOpenModal,
+  } = React.useContext(TaskContext);
 
   return (
     <React.Fragment>
@@ -30,7 +39,13 @@ function AppUI() {
         ))}
       </TaskList>
 
-      <CreateTaskButton />
+      {!!openModal && (
+        <Modal>
+          <TaskForm />
+        </Modal>
+      )}
+
+      <CreateTaskButton setOpenModal={setOpenModal} />
     </React.Fragment>
   );
 }
