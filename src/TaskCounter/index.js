@@ -1,9 +1,14 @@
 import React from "react";
+import { TaskContext } from "../TaskContext";
 import "./TaskCounter.css";
 
-function TaskCounter({ total, completed }) {
+function TaskCounter() {
+  const { totalTasks, completedTasks } = React.useContext(TaskContext);
+
   return (
-    <h2 className="task-counter"> You have completed {completed} of {total} tasks.</h2>
+    <h2 className="task-counter">
+      You have completed {completedTasks} of {totalTasks} tasks.
+    </h2>
   );
 }
 

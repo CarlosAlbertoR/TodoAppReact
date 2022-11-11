@@ -4,40 +4,35 @@ import { TaskSearch } from "../TaskSearch";
 import { TaskList } from "../TaskList";
 import { TaskItem } from "../TaskItem";
 import { CreateTaskButton } from "../CreateTaskButton";
+import { TaskContext } from "../TaskContext";
 
-function AppUI({
-    loading,
-    error,
-    totalTasks,
-    completedTasks,
-    searchValue,
-    setSearchValue,
-    searchedTasks,
-    completeTask,
-    deleteTask
-}) {
-    return (
-        <React.Fragment>
-            <TaskCounter total={totalTasks} completed={completedTasks} />
-            <TaskSearch searchValue={searchValue} setSearchValue={setSearchValue} />
-            <TaskList>
-                {error && <p>We're having an error, try reload...</p>}
-                {loading && <p>We're loading, please wait...</p>}
-                {(!loading && !searchedTasks.length) && <p>Add your first task!</p>}
+function AppUI() {
+  const { error, loading, searchedTasks, completeTask, deleteTask } =
+    React.useContext(TaskContext);
 
-                {searchedTasks.map((task) => (
-                    <TaskItem
-                        key={task.text}
-                        text={task.text}
-                        completed={task.completed}
-                        onComplete={() => completeTask(task.text)}
-                        onDelete={() => deleteTask(task.text)}
-                    />
-                ))}
-            </TaskList>
-            <CreateTaskButton />
-        </React.Fragment>
-    );
+  return (
+    <React.Fragment>
+      <TaskCounter />
+      <TaskSearch />
+      <TaskList>
+        {error && <p>We're having an error, try reload...</p>}
+        {loading && <p>We're loading, please wait...</p>}
+        {!loading && !searchedTasks.length && <p>Add your first task!</p>}
+
+        {searchedTasks.map((task) => (
+          <TaskItem
+            key={task.text}
+            text={task.text}
+            completed={task.completed}
+            onComplete={() => completeTask(task.text)}
+            onDelete={() => deleteTask(task.text)}
+          />
+        ))}
+      </TaskList>
+
+      <CreateTaskButton />
+    </React.Fragment>
+  );
 }
 
-export { AppUI }
+export { AppUI };

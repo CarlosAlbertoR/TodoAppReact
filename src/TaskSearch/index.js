@@ -1,9 +1,12 @@
 import React from "react";
+import { TaskContext } from "../TaskContext";
 import "./TaskSearch.css";
 
-function TaskSearch({ searchValue, setSearchValue }) {
-  const onSearchValueChange = event => {
-    setSearchValue(event.target.value)
+function TaskSearch() {
+  const { searchValue, setSearchValue } = React.useContext(TaskContext);
+
+  const onSearchValueChange = (event) => {
+    setSearchValue(event.target.value);
   };
 
   return (
@@ -13,8 +16,7 @@ function TaskSearch({ searchValue, setSearchValue }) {
       value={searchValue}
       onChange={onSearchValueChange}
     />
-  )
-
+  );
 }
 
 export { TaskSearch };
