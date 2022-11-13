@@ -1,23 +1,18 @@
 import React from "react";
+import { CompleteIcon } from "../TaskIcon/CompleteIcon";
+import { DeleteIcon } from "../TaskIcon/DeleteIcon";
 import "./TaskItem.css";
 
 function TaskItem(props) {
   return (
     <li className="task-item">
-      <span
-        className={`icon icon-check ${props.completed && "icon-check--active"}`}
-        onClick={props.onComplete}
-      >
-        ✔
-      </span>
+      <CompleteIcon completed={props.completed} onComplete={props.onComplete} />
       <p
         className={`task-item-p ${props.completed && "task-item-p--complete"}`}
       >
         {props.text}
       </p>
-      <span className="icon icon-delete" onClick={props.onDelete}>
-        X
-      </span>
+      <DeleteIcon onDelete={props.onDelete} />
     </li>
   );
 }
