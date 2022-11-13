@@ -7,6 +7,9 @@ import { CreateTaskButton } from "../CreateTaskButton";
 import { TaskContext } from "../TaskContext";
 import { Modal } from "../Modal";
 import { TaskForm } from "../TaskForm";
+import { TasksError } from "../TasksError";
+import { TasksLoading } from "../TasksLoading";
+import { EmptyTasks } from "../EmptyTasks";
 
 function AppUI() {
   const {
@@ -24,9 +27,9 @@ function AppUI() {
       <TaskCounter />
       <TaskSearch />
       <TaskList>
-        {error && <p>We're having an error, try reload...</p>}
-        {loading && <p>We're loading, please wait...</p>}
-        {!loading && !searchedTasks.length && <p>Add your first task!</p>}
+        {error && <TasksError />}
+        {loading && <TasksLoading />}
+        {!loading && !searchedTasks.length && <EmptyTasks />}
 
         {searchedTasks.map((task) => (
           <TaskItem
