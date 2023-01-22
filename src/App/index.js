@@ -26,7 +26,7 @@ function App() {
     completedTasks,
     searchValue,
     setSearchValue,
-  } = useTasks;
+  } = useTasks();
 
   return (
     <React.Fragment>

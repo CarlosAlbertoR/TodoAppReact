@@ -1,10 +1,10 @@
-import React from "react";
+import { useState } from "react";
 import { useLocalStorage } from "./useLocalStorage";
 
 function useTasks() {
   const [tasks, saveTasks, loading, error] = useLocalStorage("TASKS_V1", []);
-  const [searchValue, setSearchValue] = React.useState("");
-  const [openModal, setOpenModal] = React.useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  const [openModal, setOpenModal] = useState(false);
 
   const completedTasks = tasks.filter((task) => !!task.completed).length;
   const totalTasks = tasks.length;
